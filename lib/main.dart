@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:project_1/page/map_page.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'First App',
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Aplikasi Pemetaan Lokasi Wisata'),
-            backgroundColor: Colors.black,
-          ),
-          body: Column(children: <Widget>[
-            Image.network('https://www.petanikode.com/img/flutter/flutter.png',
-                scale: 1.0),
-            Text(
-              'Aplikasi Pemetaan Lokasi Wisata',
-              style: TextStyle(fontSize: 24, fontFamily: 'Lexend'),
-            ),
-            Text('By CinamonBun'),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Image.network('https://picsum.photos/250?image=9',
-                      scale: 1.0),
-                  Image.network('https://picsum.photos/250?image=9', scale: 1.0)
-                ])
-          ])),
+      title: 'Aplikasi Pemetaan Lokasi Wisata',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MapScreen(),
     );
   }
 }
