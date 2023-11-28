@@ -9,30 +9,44 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
 
-  final LatLng markerLocation =
-      LatLng(-8.157778, 113.723333); // Koordinat yang diberikan
+  final List<Marker> markers = [
+    const Marker(
+      markerId: MarkerId("marker1"),
+      position: LatLng(-8.066389, 114.245278),
+      infoWindow: InfoWindow(title: "Marker 1"),
+    ),
+    const Marker(
+      markerId: MarkerId("marker2"),
+      position: LatLng(0.939167, 130.515),
+      infoWindow: InfoWindow(title: "Marker 2"),
+    ),
+    const Marker(
+      markerId: MarkerId("marker3"),
+      position: LatLng(-8.049167, 112.920556),
+      infoWindow: InfoWindow(title: "Marker 3"),
+    ),
+    const Marker(
+      markerId: MarkerId("marker4"),
+      position: LatLng(-7.751944, 110.491389),
+      infoWindow: InfoWindow(title: "Marker 4"),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Peta Flutter dengan Marker'),
+        title: const Text('Aplikasi Pemetaan Lokasi Wisata'),
       ),
       body: GoogleMap(
         onMapCreated: (GoogleMapController controller) {
           mapController = controller;
         },
-        initialCameraPosition: CameraPosition(
-          target: markerLocation,
-          zoom: 15.0,
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(-8.186944, 113.700556), // Posisi awal peta
+          zoom: 5.0,
         ),
-        markers: {
-          Marker(
-            markerId: MarkerId('MarkerID'),
-            position: markerLocation,
-            infoWindow: InfoWindow(title: 'Marker Title'),
-          ),
-        },
+        markers: Set<Marker>.from(markers),
       ),
     );
   }
