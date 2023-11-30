@@ -32,7 +32,7 @@ class _MapScreenState extends State<MapScreen> {
             child: TextField(
               controller: searchController,
               decoration: InputDecoration(
-                labelText: 'Search for nearby places',
+                labelText: 'Search for places',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () {
@@ -60,11 +60,10 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> _searchPlaces() async {
-    final response = await places.searchNearbyWithRadius(
-      Location(lat: -8.186944, lng: 113.700556), // Posisi awal peta
-      10000, // Radius pencarian dalam meter
-      type: 'museum|park|beach', // Jenis tempat yang ingin dicari
-      keyword: searchController.text,
+    PlacesSearchResponse response = await places.searchByText(
+      searchController.text,
+      location: Location(lat: -8.186944, lng: 113.700556), // Posisi awal peta
+      radius: 5000, // Radius pencarian dalam meter
     );
 
     setState(() {
